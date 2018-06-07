@@ -122,4 +122,135 @@ var lordify3 = (firstname, land) => {
 
 console.log( lordify2("Johnson","West Wales") )
 
+var melaka = {
+    resorts: ["A Famosa", "Palm beach", "Royal Klebang"],
+    print: function(delay=0){
+        setTimeout(function(){
+            // console.log(this.resorts.join(","))
+            // gives this.resorts is undefined
+            console.log(this)
+            // this is window object
+            // this becomes something else in setTimeout, not melaka object
+        }, delay)
+    }
+}
 
+melaka.print()
+
+
+var melaka = {
+    resorts: ["A Famosa", "Palm beach", "Royal Klebang"],
+    print: function(delay=0){
+        setTimeout(() => {
+            console.log(this.resorts.join(","))
+            // gives this.resorts in melaka object
+            console.log(this)
+            // this is melaka object
+        }, delay)
+    }
+}
+
+melaka.print()
+
+
+var melaka1 = {
+    resorts: ["A Famosa", "Palm beach", "Royal Klebang"],
+    print: (delay=0) => {
+
+        setTimeout(() => {
+            console.log(this === window)
+        },delay)
+
+    }
+}
+
+melaka1.print()
+
+// destructuring assignment
+
+var sandwich = {
+    bread: "hearty italian",
+    meat: "tuna",
+    cheese: "swiss",
+    toppings: ["lettuce", "tomato", "mustard"]
+}
+
+var {bread, meat} = sandwich
+
+console.log("bread, meat",bread,meat)
+
+bread = "garlic"
+meat = "turkey"
+
+console.log("bread", bread)
+console.log("meat",meat)
+
+console.log("sandwich.bread", sandwich.bread)
+console.log("sandwich.meat", sandwich.meat)
+
+var lordify4 = regularPerson => {
+    console.log(`${regularPerson.firstname} of Scotland`)
+}
+
+var regularPerson = {
+    firstname: "Bill",
+    lastname: "Wilson"
+}
+
+lordify4(regularPerson)
+
+var lordify5 = ({firstname}) => console.log(`${firstname} of Wimbeldon`)
+
+var regularPerson1 = {
+    firstname: "Tony",
+    lastname: "Tom"
+}
+
+lordify5(regularPerson1)
+
+
+var [firstcar] = ["Toyota", "Honda", "Suzuki"]
+console.log(firstcar) // Toyota
+
+var [,,thirdcar] = ["Toyota", "Honda", "Suzuki"]
+console.log(thirdcar) // Suzuki
+
+var name = "Kinabalu"
+var elevation = 4032
+var funHike = {name, elevation}
+
+console.log(funHike)
+
+function directions(...args) {
+    var [start, ...remaining] = args
+    var [finish, ...stops] = remaining.reverse()
+
+    console.log(`drive through ${args.length} towns`)
+    console.log(`start in ${start}`)
+    console.log(`the destination is ${finish}`)
+    console.log(`stopping ${stops.length} times in between`)
+}
+
+directions(
+    "Truckee",
+    "Tahoe City",
+    "Sunnyside",
+    "Homewood",
+    "Tahoma"
+)
+
+// var morning = {
+//     breakfast: "Nasi Lemak",
+//     lunch: "Nasi Campur"
+// }
+
+// var dinner = "Spaghetii Carbonara";
+
+// var menu = {
+//     ...morning,
+//     dinner
+// }
+
+// console.log(menu);
+
+// not in ES6
